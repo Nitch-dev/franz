@@ -60,11 +60,11 @@ def open_browser():
         # *** INITIAL CLICKS ***
         time.sleep(15) # Wait 2 seconds as requested
         
-        loadCheck = pyautogui.pixelMatchesColor(580, 180, (26, 44, 56), tolerance=TOLERANCE)
-        if(loadCheck == True):
+        loadCheck = pyautogui.pixelMatchesColor(540, 430, (31, 255, 32), tolerance=TOLERANCE)
+        if(loadCheck == False):
             time.sleep(120)
-            loadCheck = pyautogui.pixelMatchesColor(580, 180, (26, 44, 56), tolerance=TOLERANCE)
-            if(loadCheck == True):
+            loadCheck = pyautogui.pixelMatchesColor(540, 430, (31, 255, 32), tolerance=TOLERANCE)
+            if(loadCheck == False):
                 os.system('sudo reboot -f')
 
         print(f"Clicking 2: ({CLICK_2_X}, {CLICK_2_Y})")
@@ -75,18 +75,6 @@ def open_browser():
         
 
         while True:
-
-            print("matching color for inital ")
-            exit_match = pyautogui.pixelMatchesColor(540, 430, (31, 255, 32), tolerance=TOLERANCE)
-            if(exit_match == True): 
-                print("refresh browser running initial click again")
-                time.sleep(3)
-                print(f"Clicking 2: ({CLICK_2_X}, {CLICK_2_Y})")
-                pyautogui.click(CLICK_2_X, CLICK_2_Y)
-                time.sleep(2) # Wait 2 seconds as requested
-                print(f"Clicking 3: ({CLICK_3_X}, {CLICK_3_Y})")
-                pyautogui.click(CLICK_3_X, CLICK_3_Y)
-                time.sleep(2)
             # *** NEW COLOR DETECTION AND CLICK LOOP ***
             print(f"Starting new color check at ({CHECK_COLOR_X}, {CHECK_COLOR_Y}) for color ({CHECK_R}, {CHECK_G}, {CHECK_B})")
             
