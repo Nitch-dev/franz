@@ -17,11 +17,11 @@ y2 = 215
 
 # New click coordinates
 CLICK_1_X, CLICK_1_Y = 400, 750
-CLICK_2_X, CLICK_2_Y = 585, 290
-CLICK_3_X, CLICK_3_Y = 550, 840  # This coordinate is used twice
+CLICK_2_X, CLICK_2_Y = 480, 280
+CLICK_3_X, CLICK_3_Y = 450, 840  # This coordinate is used twice
 
 # New color check coordinates/color
-CHECK_COLOR_X, CHECK_COLOR_Y = 800, 820
+CHECK_COLOR_X, CHECK_COLOR_Y = 690, 820
 CHECK_R, CHECK_G, CHECK_B = 15, 33, 46
 TOLERANCE = 12
 
@@ -53,7 +53,7 @@ def open_browser():
         print("Opening browser...")
         
         # Open Google Chrome
-        br = "cd /root/Downloads/firefox && ./firefox "
+        br = "cd /root/Downloads/firefox && ./firefox https://stake.com/casino/games/dice"
         subprocess.run(f"{br} &", shell=True)
         time.sleep(15) # Give the browser time to open
         print("Brpwser Opened Now Clickingg")
@@ -61,24 +61,15 @@ def open_browser():
         time.sleep(25) # Wait 2 seconds as requested
         os.system("notify-send 'browser Load time Over'")
 
-        loadCheck = pyautogui.pixelMatchesColor(354, 425, (31, 255, 32), tolerance=TOLERANCE)
-        if(loadCheck == False):
-            os.system("notify-send 'Cant see the Bet Btn'")
-            time.sleep(120)
-            loadCheck = pyautogui.pixelMatchesColor(354, 425, (31, 255, 32), tolerance=TOLERANCE)
-            if(loadCheck == False):
-                os.system("notify-send 'Still cant see reboot now'")
-                os.system('sudo reboot -f')
-
-        os.system("notify-send 'Bet btn is here Inital Clickss'")
-        print(f"Clicking 2: ({CLICK_2_X}, {CLICK_2_Y})")
-        pyautogui.click(CLICK_2_X, CLICK_2_Y)
-        time.sleep(2) # Wait 2 seconds as requested
-        print(f"Clicking 3: ({CLICK_3_X}, {CLICK_3_Y})")
-        pyautogui.click(CLICK_3_X, CLICK_3_Y)
-        
 
         while True:
+            os.system("notify-send 'Bet btn is here Inital Clickss'")
+            print(f"Clicking 2: ({CLICK_2_X}, {CLICK_2_Y})")
+            pyautogui.click(CLICK_2_X, CLICK_2_Y)
+            time.sleep(2) # Wait 2 seconds as requested
+            print(f"Clicking 3: ({CLICK_3_X}, {CLICK_3_Y})")
+            pyautogui.click(CLICK_3_X, CLICK_3_Y)
+
             # *** NEW COLOR DETECTION AND CLICK LOOP ***
             print(f"Starting new color check at ({CHECK_COLOR_X}, {CHECK_COLOR_Y}) for color ({CHECK_R}, {CHECK_G}, {CHECK_B})")
             
