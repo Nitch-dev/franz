@@ -59,14 +59,18 @@ def open_browser():
         print("Brpwser Opened Now Clickingg")
         # *** INITIAL CLICKS ***
         time.sleep(15) # Wait 2 seconds as requested
-        
-        loadCheck = pyautogui.pixelMatchesColor(540, 430, (31, 255, 32), tolerance=TOLERANCE)
+        os.system("notify-send 'browser Load time Over'")
+
+        loadCheck = pyautogui.pixelMatchesColor(354, 425, (31, 255, 32), tolerance=TOLERANCE)
         if(loadCheck == False):
+            os.system("notify-send 'Cant see the Bet Btn'")
             time.sleep(120)
             loadCheck = pyautogui.pixelMatchesColor(540, 430, (31, 255, 32), tolerance=TOLERANCE)
             if(loadCheck == False):
+                os.system("notify-send 'Still cant see reboot now'")
                 os.system('sudo reboot -f')
 
+        os.system("notify-send 'Bet btn is here Inital Clickss'")
         print(f"Clicking 2: ({CLICK_2_X}, {CLICK_2_Y})")
         pyautogui.click(CLICK_2_X, CLICK_2_Y)
         time.sleep(2) # Wait 2 seconds as requested
