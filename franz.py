@@ -55,10 +55,10 @@ def open_browser():
         # Open Google Chrome
         br = "cd /root/Downloads/firefox && ./firefox"
         subprocess.run(f"{br} &", shell=True)
-        time.sleep(10) # Give the browser time to open
+        time.sleep(15) # Give the browser time to open
         print("Brpwser Opened Now Clickingg")
         # *** INITIAL CLICKS ***
-        time.sleep(2) # Wait 2 seconds as requested
+        time.sleep(15) # Wait 2 seconds as requested
 
         print(f"Clicking 2: ({CLICK_2_X}, {CLICK_2_Y})")
         pyautogui.click(CLICK_2_X, CLICK_2_Y)
@@ -66,18 +66,23 @@ def open_browser():
         print(f"Clicking 3: ({CLICK_3_X}, {CLICK_3_Y})")
         pyautogui.click(CLICK_3_X, CLICK_3_Y)
         
-        # *** NEW COLOR DETECTION AND CLICK LOOP ***
-        print(f"Starting new color check at ({CHECK_COLOR_X}, {CHECK_COLOR_Y}) for color ({CHECK_R}, {CHECK_G}, {CHECK_B})")
-        
-        color_match = pyautogui.pixelMatchesColor(CHECK_COLOR_X, CHECK_COLOR_Y, (CHECK_R, CHECK_G, CHECK_B), tolerance=TOLERANCE)
-        
-        if color_match:
-            print(f"Color MATCHED at ({CHECK_COLOR_X}, {CHECK_COLOR_Y}). Clicking ({CLICK_3_X}, {CLICK_3_Y}) again.")
-            pyautogui.click(CLICK_3_X, CLICK_3_Y)
-        else:
-            current_color = pyautogui.pixel(CHECK_COLOR_X, CHECK_COLOR_Y)
-            print(f"Color NOT MATCHED. Found {current_color}. Skipping extra click.")
-        
+
+        while True:
+            # *** NEW COLOR DETECTION AND CLICK LOOP ***
+            print(f"Starting new color check at ({CHECK_COLOR_X}, {CHECK_COLOR_Y}) for color ({CHECK_R}, {CHECK_G}, {CHECK_B})")
+            
+
+            color_match = pyautogui.pixelMatchesColor(CHECK_COLOR_X, CHECK_COLOR_Y, (CHECK_R, CHECK_G, CHECK_B), tolerance=TOLERANCE)
+            
+            if color_match:
+                print(f"Color MATCHED at ({CHECK_COLOR_X}, {CHECK_COLOR_Y}). Clicking ({CLICK_3_X}, {CLICK_3_Y}) again.")
+                pyautogui.click(CLICK_3_X, CLICK_3_Y)
+                time.sleep(2)
+            else:
+                current_color = pyautogui.pixel(CHECK_COLOR_X, CHECK_COLOR_Y)
+                print(f"Color NOT MATCHED. Found {current_color}. Skipping extra click.")
+                time.sleep(2)
+            
         # *** ORIGINAL POST-BROWSER OPEN COLOR CHECK ***
         color_ref = pyautogui.pixelMatchesColor(1564, 191, (71, 88, 160), tolerance=TOLERANCE)
         while(color_ref == False):
