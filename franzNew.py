@@ -2,7 +2,7 @@ import time
 import pyautogui 
 import threading
 import subprocess
-
+import os
 # --- Coordinates and Colors ---
 colorX = 1089
 colorY = 668
@@ -59,6 +59,13 @@ def open_browser():
         print("Brpwser Opened Now Clickingg")
         # *** INITIAL CLICKS ***
         time.sleep(15) # Wait 2 seconds as requested
+        
+        loadCheck = pyautogui.pixelMatchesColor(580, 180, (26, 44, 56), tolerance=TOLERANCE)
+        if(loadCheck == True):
+            time.sleep(120)
+            loadCheck = pyautogui.pixelMatchesColor(580, 180, (26, 44, 56), tolerance=TOLERANCE)
+            if(loadCheck == True):
+                os.system('sudo reboot -f')
 
         print(f"Clicking 2: ({CLICK_2_X}, {CLICK_2_Y})")
         pyautogui.click(CLICK_2_X, CLICK_2_Y)
