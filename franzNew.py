@@ -60,26 +60,29 @@ def open_browser():
         # *** INITIAL CLICKS ***
         time.sleep(25) # Wait 2 seconds as requested
         os.system("notify-send 'browser Load time Over'")
-
+        os.system("notify-send 'Bet btn is here Inital Clickss'")
+        print(f"Clicking 2: ({CLICK_2_X}, {CLICK_2_Y})")
+        pyautogui.click(CLICK_2_X, CLICK_2_Y)
+        time.sleep(2) # Wait 2 seconds as requested
+        print(f"Clicking 3: ({CLICK_3_X}, {CLICK_3_Y})")
+        pyautogui.click(CLICK_3_X, CLICK_3_Y)
 
         while True:
-            os.system("notify-send 'Bet btn is here Inital Clickss'")
-            print(f"Clicking 2: ({CLICK_2_X}, {CLICK_2_Y})")
-            pyautogui.click(CLICK_2_X, CLICK_2_Y)
-            time.sleep(2) # Wait 2 seconds as requested
-            print(f"Clicking 3: ({CLICK_3_X}, {CLICK_3_Y})")
-            pyautogui.click(CLICK_3_X, CLICK_3_Y)
+            
 
             # *** NEW COLOR DETECTION AND CLICK LOOP ***
             print(f"Starting new color check at ({CHECK_COLOR_X}, {CHECK_COLOR_Y}) for color ({CHECK_R}, {CHECK_G}, {CHECK_B})")
             
 
-            color_match = pyautogui.pixelMatchesColor(CHECK_COLOR_X, CHECK_COLOR_Y, (CHECK_R, CHECK_G, CHECK_B), tolerance=TOLERANCE)
+            color_match = pyautogui.pixelMatchesColor(281, 622, (85, 112, 134), tolerance=TOLERANCE)
             
             if color_match:
+                os.system("notify-send 'start autobet Btn is avalible Now'")
                 print(f"Color MATCHED at ({CHECK_COLOR_X}, {CHECK_COLOR_Y}). Clicking ({CLICK_3_X}, {CLICK_3_Y}) again.")
                 pyautogui.click(CLICK_3_X, CLICK_3_Y)
+
                 time.sleep(2)
+
             else:
                 current_color = pyautogui.pixel(CHECK_COLOR_X, CHECK_COLOR_Y)
                 print(f"Color NOT MATCHED. Found {current_color}. Skipping extra click.")
